@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+    <title>Simple Weather App | Практический проект</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <section class="top-banner">
+        <div class="container">
+            <h1 class="heading">🌍 Простое приложение погоды</h1>
+            <p class="sub-heading">Узнайте погоду в любом городе мира</p>
+            <form id="weather-form">
+                <div class="search-container">
+                    <input 
+                        type="text" 
+                        id="city-input" 
+                        placeholder="Например: London, Moscow, Tokyo..." 
+                        autofocus
+                        required
+                    >
+                    <button type="submit" id="search-btn">
+                        <span>🔍 Поиск</span>
+                    </button>
+                </div>
+                <div id="message" class="msg"></div>
+            </form>
+        </div>
+    </section>
+
+    <section class="ajax-section">
+        <div class="container">
+            <h2 class="section-title">📋 Сохраненные города</h2>
+            <ul class="cities" id="cities-list">
+            </ul>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2024 Учебный проект по JavaScript. Данные предоставлены OpenWeatherMap</p>
+            <p class="api-status" id="api-status">⚡ Проверьте API ключ в файле script.js</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
