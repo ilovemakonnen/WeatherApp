@@ -60,7 +60,8 @@ ul {
 .top-banner {
     color: var(--text-light);
     padding: 40px 0 20px;
-    background: linear-gradient(135deg, #0a1f44 0%, #1a3b6e 100%);
+    background: linear-gradient(135deg, #5a85d0 0%, #1a3b6e 100%);
+    background-image: url(https://i.pinimg.com/originals/ed/bd/6d/edbd6d6718276705bcc9eec0f6b2e31f.jpg?nii=t);
 }
 
 .heading {

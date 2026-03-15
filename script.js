@@ -1,5 +1,5 @@
 const CONFIG = {
-    API_KEY: '3a08c2a27e824360667cd868f92c764b',
+    API_KEY: '71e871e5bf7ba4dc35c8c67cb77fc4aa',
     API_URL: 'https://api.openweathermap.org/data/2.5/weather',
     UNITS: 'metric', // metric = Цельсий, imperial = Фаренгейт
     DEFAULT_MESSAGE: 'Введите название города для поиска 🔍'
@@ -12,7 +12,6 @@ const elements = {
     list: document.getElementById('cities-list'),
     apiStatus: document.getElementById('api-status')
 };
-
 
 /**
  * Показывает сообщение пользователю
@@ -39,7 +38,7 @@ function showMessage(text, type = 'info') {
  * Проверяет статус API ключа
  */
 function checkApiKey() {
-    if (CONFIG.API_KEY === '3a08c2a27e824360667cd868f92c764b') {
+    if (!CONFIG.API_KEY || CONFIG.API_KEY === 'YOUR_API_KEY_HERE' || CONFIG.API_KEY.length < 10) {
         elements.apiStatus.textContent = '⚠️ ВНИМАНИЕ: Необходимо указать ваш API ключ OpenWeatherMap в файле script.js!';
         elements.apiStatus.style.color = '#ff8c00';
         return false;
@@ -80,14 +79,11 @@ function isCityDuplicate(cityName, countryCode) {
 function createCityCard(weatherData) {
     const { name, main, sys, weather } = weatherData;
     
-    
     const iconCode = weather[0].icon;
     const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
     
-    
     const li = document.createElement('li');
     li.classList.add('city');
-    
     
     li.innerHTML = `
         <h2 class="city-name" data-name="${name},${sys.country}">
@@ -106,8 +102,6 @@ function createCityCard(weatherData) {
     return li;
 }
 
-
-
 /**
  * Получает данные о погоде с API
  * @param {string} city - Название города для поиска
@@ -119,16 +113,13 @@ async function fetchWeatherData(city) {
         return null;
     }
     
-    
     const url = `${CONFIG.API_URL}?q=${encodeURIComponent(city)}&appid=${CONFIG.API_KEY}&units=${CONFIG.UNITS}`;
     
     try {
         showMessage('🔄 Загрузка данных...', 'info');
         
-        
         const response = await fetch(url);
         const data = await response.json();
-        
         
         if (!response.ok) {
             throw new Error(data.message || 'Ошибка при получении данных');
@@ -138,7 +129,6 @@ async function fetchWeatherData(city) {
         
     } catch (error) {
         console.error('Ошибка fetchWeatherData:', error);
-        
         
         if (error.message.includes('404')) {
             showMessage('❌ Город не найден. Проверьте название.', 'error');
@@ -196,7 +186,6 @@ async function handleFormSubmit(event) {
     elements.form.reset();
     elements.input.focus();
 }
-
 
 /**
  * Запускает приложение
