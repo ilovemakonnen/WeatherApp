@@ -22,3 +22,5 @@ Weather App
 `index.html` - разметка
 `style.css` - стили
 `script.js` - логика
+
+Сайт - https://ilovemakonnen.github.io/WeatherApp/
