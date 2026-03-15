@@ -1,0 +1,327 @@
+:root {
+    --bg-dark: #0a1f44;        /* Темно-синий фон */
+    --bg-light: #ffffff;        /* Белый фон для карточек */
+    --text-light: #ffffff;      /* Белый текст */
+    --text-med: #53627c;        /* Серо-голубой текст */
+    --text-dark: #1e2432;       /* Темно-серый текст */
+    --primary-red: #ff1e42;     /* Красный для кнопки */
+    --primary-darkred: #c3112d; /* Темно-красный для ховера */
+    --accent-orange: #ff8c00;   /* Оранжевый для бейджа страны */
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-weight: normal;
+}
+
+body {
+    font: 1rem/1.3 'Roboto', sans-serif;
+    background: var(--bg-dark);
+    color: var(--text-dark);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    background: none;
+    outline: none;
+}
+
+input {
+    border: none;
+    background: none;
+    outline: none;
+    color: inherit;
+    font-family: inherit;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+ul {
+    list-style: none;
+}
+
+.top-banner {
+    color: var(--text-light);
+    padding: 40px 0 20px;
+    background: linear-gradient(135deg, #0a1f44 0%, #1a3b6e 100%);
+}
+
+.heading {
+    font-weight: 700;
+    font-size: 3.5rem;
+    letter-spacing: 0.02em;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+.sub-heading {
+    font-size: 1.2rem;
+    color: rgba(255,255,255,0.9);
+    margin-bottom: 30px;
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+#city-input {
+    font-size: 1.8rem;
+    height: 60px;
+    padding: 5px 5px 10px;
+    border-bottom: 2px solid currentColor;
+    flex: 1 1 300px;
+    min-width: 250px;
+    transition: border-color 0.3s;
+}
+
+#city-input:focus {
+    border-bottom-color: var(--primary-red);
+}
+
+#city-input::placeholder {
+    color: rgba(255,255,255,0.5);
+}
+
+#search-btn {
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    padding: 15px 30px;
+    border-radius: 40px;
+    background: var(--primary-red);
+    color: var(--text-light);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255,30,66,0.3);
+}
+
+#search-btn:hover {
+    background: var(--primary-darkred);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255,30,66,0.4);
+}
+
+.msg {
+    display: block;
+    margin-top: 15px;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 1rem;
+    min-height: 45px;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(5px);
+}
+
+.msg.error {
+    background: rgba(255,30,66,0.2);
+    border-left: 4px solid var(--primary-red);
+}
+
+.msg.info {
+    background: rgba(255,140,0,0.2);
+    border-left: 4px solid var(--accent-orange);
+}
+
+.ajax-section {
+    margin: 40px 0 40px;
+    flex: 1;
+}
+
+.section-title {
+    color: var(--text-light);
+    font-size: 2rem;
+    margin-bottom: 30px;
+    font-weight: 300;
+    border-bottom: 2px solid rgba(255,255,255,0.2);
+    padding-bottom: 10px;
+}
+
+
+.cities {
+    display: grid;
+    grid-gap: 30px 20px;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+
+.city {
+    position: relative;
+    padding: 30px 15%;
+    border-radius: 25px;
+    background: var(--bg-light);
+    color: var(--text-med);
+    text-align: center;
+    box-shadow: 0 10px 25px var(--shadow-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.city:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+}
+
+
+.city::after {
+    content: '';
+    width: 90%;
+    height: 50px;
+    position: absolute;
+    bottom: -12px;
+    left: 5%;
+    z-index: -1;
+    opacity: 0.3;
+    border-radius: 20px;
+    background: var(--bg-light);
+}
+
+
+.city-name {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: var(--text-dark);
+}
+
+.city-name span {
+    font-weight: 700;
+}
+
+.city-name sup {
+    font-size: 0.8rem;
+    padding: 0.2em 0.6em;
+    border-radius: 30px;
+    color: var(--text-light);
+    background: var(--accent-orange);
+    margin-left: 5px;
+}
+
+
+.city-temp {
+    font-size: 4rem;
+    font-weight: 700;
+    margin: 15px 0;
+    color: var(--text-dark);
+    line-height: 1;
+}
+
+.city-temp sup {
+    font-size: 0.5em;
+    margin-left: 5px;
+}
+
+
+.city-icon {
+    margin: 15px auto;
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+}
+
+figcaption {
+    text-transform: capitalize;
+    letter-spacing: 0.05em;
+    font-size: 1.1rem;
+    color: var(--text-med);
+}
+
+footer {
+    background: rgba(0,0,0,0.3);
+    color: rgba(255,255,255,0.7);
+    padding: 20px 0;
+    text-align: center;
+    margin-top: auto;
+}
+
+.api-status {
+    font-size: 0.9rem;
+    margin-top: 5px;
+    color: var(--accent-orange);
+}
+
+@media screen and (max-width: 1000px) {
+    .cities {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .heading {
+        font-size: 2.8rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .cities {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .heading {
+        font-size: 2.2rem;
+    }
+    
+    .search-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    #city-input {
+        width: 100%;
+        font-size: 1.5rem;
+    }
+    
+    #search-btn {
+        width: 100%;
+        margin: 10px 0 0 0;
+    }
+    
+    .msg {
+        position: static;
+        margin-top: 15px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .cities {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    
+    .heading {
+        font-size: 1.8rem;
+    }
+    
+    .city-temp {
+        font-size: 3rem;
+    }
+    
+    .container {
+        padding: 0 15px;
+    }
+}
